@@ -33,8 +33,10 @@ typedef struct instruction_s
 
 extern int stack_size = 0;
 extern int *stack = NULL;
+extern char *arg = NULL;
 
-void push(char *arg);
-void pop(char *arg);
+void pusher(stack_t **stack, unsigned int line_number);
+stack_t *pusher_help(stack_t **stack, int value);
+void paller(stack_t, unsigned int);
 
 #endif

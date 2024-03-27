@@ -1,0 +1,33 @@
+#include <stdlib.h>
+#include "monty.h"
+
+/**
+ * pusher - Pushes a value onto the stack
+ * @stack: Double pointer to the stack
+ * @value: Value to be pushed
+ *
+ * Return: Pointer to the new node, or NULL on failure
+ */
+stack_t *pusher(stack_t **stack, unsigned int line_)
+{
+	stack_t *new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+		return NULL;
+
+	new_node->n = value;
+	new_node->prev = NULL;
+
+	if (*stack == NULL)
+	{
+		new_node->next = NULL;
+		*stack = new_node;
+	}
+	else
+	{
+		new_node->next = *stack;
+		(*stack)->prev = new_node;
+		*stack = new_node;
+	}
+
+	return new_node;
+}
