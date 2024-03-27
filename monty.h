@@ -37,6 +37,7 @@ extern char *arg = NULL;
 
 void pusher(stack_t **stack, unsigned int line_number);
 stack_t *pusher_help(stack_t **stack, int value);
-void paller(stack_t, unsigned int);
+void pall_handler(stack_t, unsigned int);
+void pint_handler(stack_t **stack, unsigned int line_number);
 
 #endif

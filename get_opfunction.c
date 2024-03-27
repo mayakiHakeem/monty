@@ -13,7 +13,7 @@ void (*get_op_f(char *opcode))(stack_t **stack, unsigned int line_number)
 
 	instruction_t instructions[] = {
 		{"push", pusher},
-		{"pall", paller},
+		{"pall_handler", paller},
 		{NULL, NULL}
 	};
 
