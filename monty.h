@@ -1,6 +1,17 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -31,13 +42,34 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int stack_size = 0;
-extern int *stack = NULL;
-extern char *arg = NULL;
+/**
+ * struct params - opcode and its function
+ * @opcode: the opcode
+ * @line_number: number of line
+ * @n: data
+ * @file: monty bytecode file
+ * @stack: pointer stack
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct params {
+	unsigned int line_number;
+	char *arg;
+	int n;
+	FILE *file;
+	stack_t *stack;
+} param;
 
-void pusher(stack_t **stack, unsigned int line_number);
-stack_t *pusher_help(stack_t **stack, int value);
-void pall_handler(stack_t, unsigned int);
-void pint_handler(stack_t **stack, unsigned int line_number);
+extern param *global_params;
+
+void push(stack_t **stack, unsigned int line_number);
+stack_t *push_helper(stack_t **stack, int value);
+void pall(stack_t, unsigned int);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+int an_int(char *str);
 
 #endif

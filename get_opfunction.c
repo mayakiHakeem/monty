@@ -1,4 +1,3 @@
-#include <string.h>
 #include "monty,h"
 
 /**
@@ -7,13 +6,18 @@
  *
  * Return: a ptr to the function mapped with the opcode, or NULL if not found
  */
-void (*get_op_f(char *opcode))(stack_t **stack, unsigned int line_number)
+void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	unsigned int i;
 
 	instruction_t instructions[] = {
-		{"push", pusher},
-		{"pall_handler", paller},
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap",swap},
+		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
