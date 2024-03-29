@@ -10,14 +10,14 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	int value;
 
-	if (!arg)
+	if (!global_params->arg)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	if (an_int(arg))
-		value = atoi(arg);
+	if (an_int(global_params->arg))
+		value = atoi(global_params->arg);
 	else
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -71,15 +71,15 @@ stack_t *push_helper(stack_t **stack, int value)
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
+	stack_t *temp;
+
 	if (*stack == NULL)  /* Check if stack is empty*/
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free(line);
-		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 
-	stack_t *temp = *stack;
+	temp = *stack;
 	*stack = (*stack)->next;  /* Move the stack pointer to the next node*/
 	if (*stack != NULL)
 		(*stack)->prev = NULL;  /* Update the prev pointer of the new top node*/
@@ -95,7 +95,7 @@ void pop(stack_t **stack, unsigned int line_number)
  */
 int an_int(char *str)
 {
-	int i, count = 0;
+	int i = 0;
 
 	for (i = 0; str[i] != '\0'; i++)
 	{

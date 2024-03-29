@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "monty.h"
 
 /**
@@ -8,62 +9,59 @@
  */
 int main(int argc, char *argv[])
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-	FILE *file;
+	char buffer[BUFFER_SIZE];
+	char *opcode;
+	void (*handle)(stack_t **stack, unsigned int line_number);
 
+	initialize_params();
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty %s\n", argv[1]);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	file = fopen(argv[1], "r");
-	if (file == NULL)
+	global_params->file = fopen(argv[1], "r");
+	if (global_params->file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	initialize_params();
-	while ((read = getline(&line, &len, file)) != -1)
+	while (fgets(buffer, BUFFER_SIZE, global_params->file) != NULL)
 	{
-		if (line == NULL || line[0] == '#' || strcmp(line, "\n") == 0)
+		global_params->line = buffer;
+		if (global_params->line[0] == '#' || global_params->line[0] == '\n')
 			continue;
 
-		char *opcode = strtok(line, " \t\n");
+		opcode = strtok(global_params->line, " \t\n");
 		global_params->arg = strtok(NULL, " \t\n");
-		void (*handle)(stack_t **stack, unsigned int line_number) = get_func(opcode);
 
-		if (handler != NULL)
+		handle = get_func(opcode);
+		if (handle != NULL)
 		{
 			if (strcmp(opcode, "push") == 0)
 			{
 				if (global_params->arg == NULL)
 				{
 					fprintf(stderr, "L%u: usage: push integer\n", global_params->line_number);
-					free(line);
-					fclose(file);
+					fclose(global_params->file);
 					exit(EXIT_FAILURE);
 				}
 				handle(&(global_params->stack), global_params->line_number);
 			}
 			else
-				handler(&(global_params->stack), global_params->line_number);
+				handle(&(global_params->stack), global_params->line_number);
 		}
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", global_params->line_number, opcode);
-			free(line);
-			fclose(file);
+			fclose(global_params->file);
 			exit(EXIT_FAILURE);
 		}
 		global_params->line_number++;
 
 	}
 
-	free(line);
-	fclose(file);
+	fclose(global_params->file);
 	return (0);
 }

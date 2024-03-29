@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * add_handler - Handles the add opcode
+ * add - Handles the add opcode
  * @stack: Double pointer to the head of the stack
  * @line_number: Line number in the Monty file
  */
@@ -10,8 +10,8 @@ void add(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		free(line);
-		fclose(file);
+		free(global_params->line);
+		fclose(global_params->file);
 		exit(EXIT_FAILURE);
 	}
 
