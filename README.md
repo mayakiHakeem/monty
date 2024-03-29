@@ -3,11 +3,11 @@
 This is a simple Monty bytecode interpreter implemented in C. It reads bytecode files line by line, parses the instructions, and executes them accordingly. The Monty language is a simple stack-based language used for learning and experimenting with programming concepts.
 
 ## Table of Contents
-- [Overview](# Overview)
-- [Features](# Features)
-- [Usage](# Usage)
-- [Contributing](# Contributing)
-- [License](# License)
+- [Overview](#Overview)
+- [Features](#Features)
+- [Usage](#Usage)
+- [Contributing](#Contributing)
+- [License](#License)
 
 ## Overview
 Monty is a project that aims to interpret Monty bytecode files containing instructions to manipulate a stack data structure. It reads instructions from a file, parses them, and executes them to perform operations like pushing values onto the stack, popping values, performing arithmetic operations, and more.
