@@ -82,5 +82,6 @@ void nop(stack_t **stack, unsigned int line_number);
 int is_empty_line (char *line);
 void free_stack(stack_t *stack);
 void cleanup(void);
+void process(char *opcode, char *arg, unsigned int line_number);
 
 #endif

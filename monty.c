@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 {
 	char buffer[BUFFER_SIZE];
 	char *opcode;
-	void (*handle)(stack_t **stack, unsigned int line_number);
 	param *global_params = get_global_params();
 
 	initialize_params();
@@ -42,28 +41,7 @@ int main(int argc, char *argv[])
 		opcode = strtok(global_params->line, " \t\n");
 		global_params->arg = strtok(NULL, " \t\n");
 
-		handle = get_func(opcode);
-		if (handle != NULL)
-		{
-			if (strcmp(opcode, "push") == 0)
-			{
-				if (global_params->arg == NULL)
-				{
-					fprintf(stderr, "L%u: usage: push integer\n", global_params->line_number);
-					fclose(global_params->file);
-					exit(EXIT_FAILURE);
-				}
-				handle(&(global_params->stack), global_params->line_number);
-			}
-			else
-				handle(&(global_params->stack), global_params->line_number);
-		}
-		else
-		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", global_params->line_number, opcode);
-			fclose(global_params->file);
-			exit(EXIT_FAILURE);
-		}
+		process(opcode, global_params->arg, global_params->line_number);
 		global_params->line_number++;
 
 	}

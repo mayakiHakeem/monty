@@ -21,11 +21,13 @@ void cleanup(void)
  * free_stack - free the stack
  * @stack: stack to free
  */
-void free_stack(stack_t *stack) {
+void free_stack(stack_t *stack)
+{
 	stack_t *current = stack;
 	stack_t *next;
 
-	while (current != NULL) {
+	while (current != NULL)
+	{
 		next = current->next;
 		free(current);
 		current = next;
