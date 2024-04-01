@@ -31,8 +31,13 @@ int main(int argc, char *argv[])
 	while (fgets(buffer, BUFFER_SIZE, global_params->file) != NULL)
 	{
 		global_params->line = buffer;
-		if (global_params->line[0] == '#' || global_params->line[0] == '\n')
+		if (global_params->line[0] == '#')
 			continue;
+		if (is_empty_line(global_params->line))
+		{
+			global_params->line_number++;
+			continue;
+		}
 
 		opcode = strtok(global_params->line, " \t\n");
 		global_params->arg = strtok(NULL, " \t\n");
