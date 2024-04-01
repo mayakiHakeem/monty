@@ -9,7 +9,7 @@ void cleanup(void)
 
 	free_stack(global_params->stack);
 	global_params->stack = NULL;
-
+	
 	if (global_params->file != NULL)
 	{
 		fclose(global_params->file);
