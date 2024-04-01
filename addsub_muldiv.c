@@ -99,7 +99,7 @@ void mod(stack_t **stack, unsigned int line_number)
 
 	if ((*stack)->n != 0)
 	{
-		(*stack)->next->n /= (*stack)->n;
+		(*stack)->next->n %= (*stack)->n;
 		pop(stack, line_number);
 	}
 	else
