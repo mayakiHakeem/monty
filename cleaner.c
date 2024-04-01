@@ -19,7 +19,7 @@ void cleanup(void)
 
 /**
  * free_stack - free the stack
- * stack: stack to free
+ * @stack: stack to free
  */
 void free_stack(stack_t *stack) {
 	stack_t *current = stack;

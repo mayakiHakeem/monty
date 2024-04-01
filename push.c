@@ -97,10 +97,14 @@ int an_int(char *str)
 {
 	int i = 0;
 
-	for (i = 0; str[i] != '\0'; i++)
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+
+	while (str[i] != '\0')
 	{
 		if (!isdigit(str[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }
