@@ -60,3 +60,31 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	printf("%c\n", (*stack)->n);
 }
+
+
+
+/**
+ * pstr - Print the value at the top of the stack
+ * @stack: Pointer to the top of the stack
+ * @line_number: Line number where the pint opcode is encountered
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+
+	if (*stack == NULL)
+		printf("\n");
+	else
+	{
+		while ((*stack) && ((*stack)->n > 0 && (*stack)->n <= 127))
+		{
+			if ((*stack)->n == 0)
+				break;
+
+			printf("%c", (*stack)->n);
+
+			*stack = (*stack)->next;
+		}
+		printf("\n");
+	}
+}

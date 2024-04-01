@@ -89,5 +89,6 @@ void division(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 char *trim_str(char *str);
 void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
 
 #endif
