@@ -15,3 +15,18 @@ int is_empty_line(char *line)
 	}
 	return (1);
 }
+
+
+/**
+ * trim_str - remove leading white space
+ * @str: string to trim
+ *
+ * Return: trimmed str
+ */
+char *trim_str(char *str)
+{
+	while (str && isspace(*str))
+		str++;
+
+	return (str);
+}

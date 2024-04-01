@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
 
 	while (fgets(buffer, BUFFER_SIZE, global_params->file) != NULL)
 	{
-		global_params->line = buffer;
+		global_params->line = trim_str(buffer);
+
 		if (global_params->line[0] == '#')
 			continue;
 		if (is_empty_line(global_params->line))
