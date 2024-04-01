@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 	char buffer[BUFFER_SIZE];
 	char *opcode;
 	void (*handle)(stack_t **stack, unsigned int line_number);
+	param *global_params = get_global_params();
 
 	initialize_params();
 	if (argc != 2)

@@ -1,7 +1,5 @@
 #include "monty.h"
 
-param *global_params = NULL;
-
 /**
  * initialize_params - initialize the global params
  *
@@ -9,6 +7,8 @@ param *global_params = NULL;
  */
 void initialize_params(void)
 {
+	param *global_params = get_global_params();
+
 	/* Allocate memory for global_params if it's NULL */
 	if (global_params == NULL)
 	{

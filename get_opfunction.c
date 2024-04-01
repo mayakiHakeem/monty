@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * get_op_f - retrieves the function pointer associated with an opcode
+ * get_func - retrieves the function pointer associated with an opcode
  * @opcode: the opcode string
  *
  * Return: a ptr to the function mapped with the opcode, or NULL if not found
@@ -15,7 +15,7 @@ void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		{"swap",swap},
+		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
 		{NULL, NULL}

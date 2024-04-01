@@ -7,6 +7,8 @@
  */
 void add(stack_t **stack, unsigned int line_number)
 {
+	param *global_params = get_global_params();
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);

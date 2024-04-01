@@ -4,11 +4,11 @@
  * push - Pushes a value onto the stack
  * @stack: Double pointer to the stack
  * @line_number: Line number of the opcode
- * @arg: String representation of the value to be pushed
  */
 void push(stack_t **stack, unsigned int line_number)
 {
 	int value;
+	param *global_params = get_global_params();
 
 	if (!global_params->arg)
 	{

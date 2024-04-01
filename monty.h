@@ -46,8 +46,8 @@ typedef struct instruction_s
 
 /**
  * struct params - opcode and its function
- * @opcode: the opcode
  * @line_number: number of line
+ * @arg: argument
  * @n: data
  * @file: monty bytecode file
  * @stack: pointer stack
@@ -56,7 +56,8 @@ typedef struct instruction_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
-typedef struct params {
+typedef struct params
+{
 	unsigned int line_number;
 	char *arg;
 	int n;
@@ -65,7 +66,8 @@ typedef struct params {
 	char *line;
 } param;
 
-extern param *global_params;
+extern param *get_global_params(void);
+
 void (*get_func(char *opcode))(stack_t **stack, unsigned int line_number);
 void initialize_params(void);
 void push(stack_t **stack, unsigned int line_number);
