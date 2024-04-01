@@ -80,5 +80,7 @@ void add(stack_t **stack, unsigned int line_number);
 int an_int(char *str);
 void nop(stack_t **stack, unsigned int line_number);
 int is_empty_line (char *line);
+void free_stack(stack_t *stack);
+void cleanup(void);
 
 #endif

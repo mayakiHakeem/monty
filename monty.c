@@ -68,6 +68,6 @@ int main(int argc, char *argv[])
 
 	}
 
-	fclose(global_params->file);
+	cleanup();
 	return (0);
 }
